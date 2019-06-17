@@ -10,12 +10,13 @@ import subprocess
 import pylab as plt
 import time
 import shutil
+import zipfile
 
 def run(apply_to_biosignalsplux_website=False):
     # ======================================================================================================================
     # ===================================== Access to each notebook file ===================================================
     # ======================================================================================================================
-    filePath = "../header_footer/biosignalsnotebooks_environment/Categories"
+    filePath = "../header_footer/biosignalsnotebooks_environment/unpublished_notebooks"
     projectAbsPath = os.getcwd()
     # print(os.path.dirname(os.path.abspath(__file__)))
     listOfNbCategories = os.listdir(filePath)
@@ -214,6 +215,16 @@ def run(apply_to_biosignalsplux_website=False):
                     # Delete original Notebook HTML file.
                     htmlFile.close()
                     os.remove(path_temp + "\\" + notebook.split(".")[0] + ".html")
+
+                    # Generation of a zip archive intended to create a downloadable version of each Notebook
+                    # with all the styles and minimal size.
+                    zipf = zipfile.ZipFile(path_temp + "\\" + notebook.split(".")[0] + "_rev" + ".zip", 'w', zipfile.ZIP_DEFLATED)
+
+                    # Populating the .zip file with the images and styles folders.
+
+                    zipf.write(os.path.join(path_temp, file))
+
+                    zipf.close()
 
 run(apply_to_biosignalsplux_website=True)
 

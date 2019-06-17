@@ -13167,7 +13167,7 @@ div#notebook {
           </div>
          </td>
          <td class="header_text">
-          Stone, Paper or Scissor Game - Train and Classify [Volume 2]
+          Rock, Paper or Scissor Game - Train and Classify [Volume 2]
          </td>
         </tr>
        </table>
@@ -13222,7 +13222,7 @@ div#notebook {
        <p>
         <span class="color4">
          <strong>
-          Previous Notebooks that are part of "Stone, Paper or Scissor Game - Train and Classify" module
+          Previous Notebooks that are part of "Rock, Paper or Scissor Game - Train and Classify" module
          </strong>
         </span>
        </p>
@@ -13230,7 +13230,7 @@ div#notebook {
         <li>
          <a href="classification_game_volume_1_rev.php">
           <strong>
-           Stone, Paper or Scissor Game - Train and Classify [Volume 1] | Experimental Setup
+           Rock, Paper or Scissor Game - Train and Classify [Volume 1] | Experimental Setup
            <img height="10px" src="../../images/icons/link.png" style="display:inline" width="10px"/>
           </strong>
          </a>
@@ -13239,7 +13239,7 @@ div#notebook {
        <p>
         <span class="color7">
          <strong>
-          Following Notebooks that are part of "Stone, Paper or Scissor Game - Train and Classify" module
+          Following Notebooks that are part of "Rock, Paper or Scissor Game - Train and Classify" module
          </strong>
         </span>
        </p>
@@ -13247,7 +13247,7 @@ div#notebook {
         <li>
          <a href="classification_game_volume_3_rev.php">
           <strong>
-           Stone, Paper or Scissor Game - Train and Classify [Volume 3] | Training a Classifier
+           Rock, Paper or Scissor Game - Train and Classify [Volume 3] | Training a Classifier
            <img height="10px" src="../../images/icons/link.png" style="display:inline" width="10px"/>
           </strong>
          </a>
@@ -13255,7 +13255,7 @@ div#notebook {
         <li>
          <a href="../Evaluate/classification_game_volume_4_rev.php">
           <strong>
-           Stone, Paper or Scissor Game - Train and Classify [Volume 4] | Performance Evaluation
+           Rock, Paper or Scissor Game - Train and Classify [Volume 4] | Performance Evaluation
            <img height="10px" src="../../images/icons/link.png" style="display:inline" width="10px"/>
           </strong>
          </a>
@@ -13275,7 +13275,7 @@ div#notebook {
            </a>
            , we will follow our Machine Learning Journey by specifying which features will be extracted.
            <br/>
-           "Features" are numerical parameters extracted from the training data (in our case physiological signals acquired when executing gestures of "Paper, Stone or Scissor" game), characterizing objectively the training example.
+           "Features" are numerical parameters extracted from the training data (in our case physiological signals acquired when executing gestures of "Rock, Paper or Scissor" game), characterizing objectively the training example.
             A good feature is a parameter that has the ability to separate the different classes of our classification system, i.e, a parameter with a characteristic range of values for each available class.
           </td>
          </tr>
@@ -13320,10 +13320,10 @@ div#notebook {
          <li>
           <span class="color7">
            <strong>
-            "Stone"
+            "Rock"
            </strong>
           </span>
-          [All fingers are bent]
+          [All fingers are flexed]
          </li>
          <li>
           <span class="color13">
@@ -13331,7 +13331,7 @@ div#notebook {
             "Scissor"
            </strong>
           </span>
-          [Forefinger and middle finger are extended and the remaining ones are bent]
+          [Forefinger and middle finger are extended and the remaining ones are flexed]
          </li>
         </ol>
        </p>
@@ -13355,7 +13355,7 @@ div#notebook {
          </td>
          <td style="text-align:center">
           <strong>
-           Stone
+           Rock
           </strong>
          </td>
          <td style="text-align:center">
@@ -13521,7 +13521,8 @@ div#notebook {
 <span class="c1"># Functions intended to extract some statistical parameters.</span>
 <span class="kn">from</span> <span class="nn">numpy</span> <span class="k">import</span> <span class="nb">max</span><span class="p">,</span> <span class="n">std</span><span class="p">,</span> <span class="n">average</span><span class="p">,</span> <span class="nb">sum</span><span class="p">,</span> <span class="n">absolute</span>
 
-<span class="c1"># With the following import we will be able to extract the linear regression parameters after fitting experimental points to the model.</span>
+<span class="c1"># With the following import we will be able to extract the linear regression parameters after </span>
+<span class="c1"># fitting experimental points to the model.</span>
 <span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="k">import</span> <span class="n">linregress</span>
 
 <span class="c1"># biosignalsnotebooks own package that supports some functionalities used on the Jupyter Notebooks.</span>
@@ -13536,11 +13537,11 @@ div#notebook {
         <div class="output_area">
          <div class="prompt">
          </div>
-         <div id="c3937779-b024-4bcd-926b-d3b59f0b3634">
+         <div id="edda5e94-428e-4ddf-9577-7370172c2da7">
          </div>
          <div class="output_subarea output_javascript">
           <script type="text/javascript">
-           var element = $('#c3937779-b024-4bcd-926b-d3b59f0b3634');
+           var element = $('#edda5e94-428e-4ddf-9577-7370172c2da7');
 
 (function(root) {
   function now() {
@@ -13809,11 +13810,11 @@ div#notebook {
         <div class="output_area">
          <div class="prompt">
          </div>
-         <div id="41b27553-8398-4213-90ed-4ae9ba443b8b">
+         <div id="88a472b2-a0c9-47d9-8b7e-9d72b730f28d">
          </div>
          <div class="output_subarea output_javascript">
           <script type="text/javascript">
-           var element = $('#41b27553-8398-4213-90ed-4ae9ba443b8b');
+           var element = $('#88a472b2-a0c9-47d9-8b7e-9d72b730f28d');
 
 (function(root) {
   function now() {
@@ -14394,7 +14395,7 @@ div#notebook {
       <div class="text_cell_render border-box-sizing rendered_html">
        <p>
         We reach the end of the "Classification Game" second volume. Now all the features of training examples are in our possession.
-If your are feeling your interest increasing, please jump to the next
+If you are feeling your interest increasing, please jump to the next
         <a href="../Train_and_Classify/classification_game_volume_3_rev.php">
          volume
          <img height="10px" src="../../images/icons/link.png" style="display:inline" width="10px"/>
@@ -14608,7 +14609,7 @@ color: black !important;
 background-color: rgba(98,195,238,0.20) !important;
 }
 .color1_top{
-border-top:solid 3px #62C3EE !important;
+border-top:solid 3px #FDC400 !important;
 }
 .gradient_color1 {
 /*background-image: linear-gradient(to right, rgba(98,195,238,0.20) , white) !important;*/

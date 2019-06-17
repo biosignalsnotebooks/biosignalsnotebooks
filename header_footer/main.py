@@ -36,7 +36,7 @@ def run(list_notebooks=["All"], exclude_notebooks=["None"]):
     # ============================= Copy of  =================================
 
     # ==================== Copy of 'images' 'styles' and 'signal_samples' folders ==================
-    for var in ["images", "styles", "signal_samples", "categories"]:
+    for var in ["images", "styles", "signal_samples", "unpublished_notebooks"]:
         new_dir = current_dir + "\\" + var
 
         # Delete of old files if the directory was previously created.
@@ -53,60 +53,61 @@ def run(list_notebooks=["All"], exclude_notebooks=["None"]):
         shutil.copytree(src, destination)
 
     # ======================== Copy of the original versions of Notebooks ==========================
-    current_dir = os.getcwd() + "\\biosignalsnotebooks_environment\\categories"
+    current_dir = os.getcwd() + "\\biosignalsnotebooks_environment\\unpublished_notebooks"
     for category in list(NOTEBOOK_KEYS.keys()):
-        list_files = os.listdir(current_dir + "\\" + category)
-        for file in list_files:
-            # Access to all Notebook files (with the extension .ipynb)
-            if file.endswith(".ipynb") and (file.split(".ipynb")[0] in list_notebooks or
-                                            "All" in list_notebooks) \
-                    and (file.split(".ipynb")[0] not in exclude_notebooks
-                         or "None" in exclude_notebooks):
-                # Read of the current Notebook.
-                file_dir = current_dir + "\\" + category + "\\" + file
-                notebook = nbformat.read(file_dir, nbformat.NO_CONVERT)
+        if(category in os.listdir(current_dir)):
+            list_files = os.listdir(current_dir + "\\" + category)
+            for file in list_files:
+                # Access to all Notebook files (with the extension .ipynb)
+                if file.endswith(".ipynb") and (file.split(".ipynb")[0] in list_notebooks or
+                                                "All" in list_notebooks) \
+                        and (file.split(".ipynb")[0] not in exclude_notebooks
+                             or "None" in exclude_notebooks):
+                    # Read of the current Notebook.
+                    file_dir = current_dir + "\\" + category + "\\" + file
+                    notebook = nbformat.read(file_dir, nbformat.NO_CONVERT)
 
-                # Search for "header" and/or "footer".
-                header_cell, footer_cell, title, nbr_stars, tags = _get_metadata(notebook, file,
-                                                                                 category)
+                    # Search for "header" and/or "footer".
+                    header_cell, footer_cell, title, nbr_stars, tags = _get_metadata(notebook, file,
+                                                                                     category)
 
-                # Update or Insertion of header and footer.
-                # [Header]
-                header_rev = HEADER.replace("FILENAME", file.split(".")[0] + ".dwipynb")
-                header_rev = header_rev.replace("SOURCE", "https://mybinder.org/v2/gh/biosignalsnotebooks/biosignalsnotebooks/biosignalsnotebooks_binder?filepath=biosignalsnotebooks_environment%2Fcategories%2F" + category + "%2F" + file.split(".")[0] + ".dwipynb")
+                    # Update or Insertion of header and footer.
+                    # [Header]
+                    header_rev = HEADER.replace("FILENAME", file.split(".")[0] + ".dwipynb")
+                    header_rev = header_rev.replace("SOURCE", "https://mybinder.org/v2/gh/biosignalsnotebooks/biosignalsnotebooks/biosignalsnotebooks_binder?filepath=biosignalsnotebooks_environment%2Fcategories%2F" + category + "%2F" + file.split(".")[0] + ".dwipynb")
 
-                if header_cell is None:
-                    notebook["cells"].insert(0, nbformat.v4.new_markdown_cell(header_rev, **{"metadata": {"tags": ["header"]}}))
-                    if footer_cell is not None:
-                        footer_cell += 1
-                else:
-                    notebook["cells"][header_cell] = nbformat.v4.new_markdown_cell(header_rev, **{"metadata": {"tags": ["header"]}})
+                    if header_cell is None:
+                        notebook["cells"].insert(0, nbformat.v4.new_markdown_cell(header_rev, **{"metadata": {"tags": ["header"]}}))
+                        if footer_cell is not None:
+                            footer_cell += 1
+                    else:
+                        notebook["cells"][header_cell] = nbformat.v4.new_markdown_cell(header_rev, **{"metadata": {"tags": ["header"]}})
 
-                # [Footer]
-                if footer_cell is None:
-                    notebook["cells"].append(nbformat.v4.new_markdown_cell(FOOTER, **{"metadata": {"tags": ["footer"]}}))
-                else:
-                    notebook["cells"][footer_cell] = nbformat.v4.new_markdown_cell(FOOTER, **{"metadata": {"tags": ["footer"]}})
+                    # [Footer]
+                    if footer_cell is None:
+                        notebook["cells"].append(nbformat.v4.new_markdown_cell(FOOTER, **{"metadata": {"tags": ["footer"]}}))
+                    else:
+                        notebook["cells"][footer_cell] = nbformat.v4.new_markdown_cell(FOOTER, **{"metadata": {"tags": ["footer"]}})
 
-                # Generation of the Notebook with the header and footer.
-                nbformat.write(notebook, file_dir)
+                    # Generation of the Notebook with the header and footer.
+                    nbformat.write(notebook, file_dir)
 
-                # Run Notebook.
-                os.system("jupyter nbconvert --execute --inplace --ExecutePreprocessor.timeout=-1 "
-                          + file_dir)
-                os.system("jupyter trust " + file_dir)
+                    # Run Notebook.
+                    os.system("jupyter nbconvert --execute --inplace --ExecutePreprocessor.timeout=-1 "
+                              + file_dir)
+                    os.system("jupyter trust " + file_dir)
 
-                # Storage of Notebook metadata in global dictionaries.
-                if category != "MainFiles":
-                    if str(nbr_stars) not in (DICT_GROUP_BY_DIFF.keys()):
-                        DICT_GROUP_BY_DIFF[str(nbr_stars)] = []
+                    # Storage of Notebook metadata in global dictionaries.
+                    if category != "MainFiles":
+                        if str(nbr_stars) not in (DICT_GROUP_BY_DIFF.keys()):
+                            DICT_GROUP_BY_DIFF[str(nbr_stars)] = []
 
-                    DICT_GROUP_BY_DIFF[str(nbr_stars)].append(file_dir + "&" + title)
+                        DICT_GROUP_BY_DIFF[str(nbr_stars)].append(file_dir + "&" + title)
 
-                    for tag in tags:
-                        if tag not in (DICT_GROUP_BY_TAG.keys()):
-                            DICT_GROUP_BY_TAG[str(tag)] = []
-                        DICT_GROUP_BY_TAG[str(tag)].append(file_dir + "&" + title)
+                        for tag in tags:
+                            if tag not in (DICT_GROUP_BY_TAG.keys()):
+                                DICT_GROUP_BY_TAG[str(tag)] = []
+                            DICT_GROUP_BY_TAG[str(tag)].append(file_dir + "&" + title)
 
     # ==============================================================================================
     # ============================ Generate "Group by ..." Pages ===================================
