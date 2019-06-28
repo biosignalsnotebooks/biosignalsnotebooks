@@ -5,6 +5,8 @@
 [![html5](https://img.shields.io/badge/html-5-green.svg)]()
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/biosignalsnotebooks/biosignalsnotebooks/master?filepath=header_footer%2Fbiosignalsnotebooks_environment%2Fcategories%2FMainFiles%2Fbiosignalsnotebooks.ipynb)
 
+> **WARNING**: The current repository is deprecated since 28th June of 2019. For accessing the most recent update about **<span style="color:#009EE3">biosignalsnotebooks</span>** project, please, visit our newest repository located at https://github.com/biosignalsplux/biosignalsnotebooks
+
 ## Description
 
 **<span style="color:#009EE3">biosignalsnotebooks</span>** is a set of documents and a **<span style="color: #62C3EE">Python</span>** library to provide programming examples in the form of **<span style="color:#72BE94">Jupyter Notebooks</span>**, as companion to the **<span style="color:#009EE3">OpenSignals</span>** biosignals acquisition tools.
